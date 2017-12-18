@@ -1,0 +1,9 @@
+filebeat.prospectors:
+
+- input_type: log
+  paths:
+    - /var/log/conpot.json
+  tags: ["ConPot"]
+
+output.logstash:
+  hosts: ["logstash:5044"]

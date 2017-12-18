@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  netdata:
+    image: dtagdevsec/netdata:1710
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor=unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 19999:19999
+    command: ["/usr/sbin/netdata","-D","-s","/host","-p","19999"]
+    
